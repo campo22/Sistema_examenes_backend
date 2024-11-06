@@ -1,0 +1,31 @@
+// custom-theme.scss
+
+@use '@angular/material' as mat;
+
+// Definir la paleta de colores personalizada
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+// Crear el tema personalizado
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   warn: $my-warn,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+// Aplicar el tema a Angular Material
+@include mat.all-component-themes($my-theme);
+
+// Definir variables CSS personalizadas
+:root {
+  --mat-primary-color: #{mat.get-color-from-palette($my-primary)};
+  --mat-accent-color: #{mat.get-color-from-palette($my-accent)};
+  --mat-warn-color: #{mat.get-color-from-palette($my-warn)};
+  --mat-form-field-background: rgba(255, 255, 255, 0.9);
+  --mat-form-field-text-color: #000;
+}
