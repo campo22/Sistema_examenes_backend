@@ -1,7 +1,7 @@
 // signup.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -19,18 +19,26 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
-  user = {
-    username: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    password: ''
-  };
+export class SignupComponent implements OnInit {
+  signupForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.signupForm = this.fb.group({
+      username: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  ngOnInit(): void { }
 
   onSubmit() {
-    console.log('Formulario enviado', this.user);
-    // Aquí puedes agregar la lógica para enviar los datos al servidor
+    if (this.signupForm.valid) {
+      console.log('Formulario enviado', this.signupForm.value);
+      // Aquí puedes agregar la lógica para enviar los datos al servidor
+    }
   }
 }

@@ -1,0 +1,8 @@
+// src/styles.scss
+@use 'custom-theme.scss' as theme;
+
+/* Otros estilos globales aquí */
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -1,5 +1,4 @@
-/* signup.component.css */
-@import 'custom-theme.scss';
+/* src/app/page/signup/signup.component.css */
 
 .bootstrap-wrapper {
   background-image: url('/assets/img.jpg');
@@ -14,17 +13,17 @@
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(255, 254, 254);
   border-radius: 8px;
   padding: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(240, 250, 239, 0.1);
   width: 100%;
+  max-width: 400px;
 }
 
 .id {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin-bottom: 20px;
 }
 
@@ -32,53 +31,33 @@
   text-align: center;
 }
 
-.full-width {
-  width: 100%;
-  margin-bottom: 16px;
-}
-
 h2 {
-  margin-bottom: 30px;
-  color: #333;
+  margin-bottom: 24px;
+  color: #12f30b;
 }
 
-/* Estilos para los campos del formulario usando variables de tema */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .mat-mdc-form-field {
-  background-color: var(--mat-form-field-background);
-  border-radius: 4px;
+  width: 100%;
 }
 
-.mat-mdc-form-field-flex {
-  padding: 0 12px;
-}
-
-.mat-mdc-text-field-wrapper {
-  background-color: transparent !important;
-}
-
-.mat-mdc-form-field-infix {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-/* Estilo para el label cuando está flotando */
-.mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
-  color: var(--mat-primary-color);
-}
-
-/* Estilo para el borde cuando está enfocado */
-.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
-.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
-.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
-  border-color: var(--mat-primary-color);
-}
-
-/* Estilo para el texto de entrada */
-.mat-mdc-input-element {
-  color: var(--mat-form-field-text-color);
-}
-
-/* Estilo para el botón */
 .submit-button {
-  margin-top: 20px;
+  margin-top: 16px;
+
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+

@@ -6,40 +6,51 @@
       <h2>Bienvenido a mi perfil</h2>
     </div>
 
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre De Usuario</mat-label>
-        <input matInput placeholder="Digite su nombre de usuario" [(ngModel)]="user.username" name="username" required>
+        <input matInput placeholder="Digite su nombre de usuario" formControlName="username" required>
+        <mat-error *ngIf="signupForm.get('username')?.hasError('required')">El nombre de usuario es
+          requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Digite su nombre" [(ngModel)]="user.firstName" name="firstName" required>
+        <input matInput placeholder="Digite su nombre" formControlName="firstName" required>
+        <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">El nombre es requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Apellidos</mat-label>
-        <input matInput placeholder="Digite sus apellidos" [(ngModel)]="user.lastName" name="lastName" required>
+        <input matInput placeholder="Digite sus apellidos" formControlName="lastName" required>
+        <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">Los apellidos son requeridos</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Teléfono</mat-label>
-        <input matInput placeholder="Digite su teléfono" [(ngModel)]="user.phone" name="phone" required>
+        <input matInput placeholder="Digite su teléfono" formControlName="phone" required>
+        <mat-error *ngIf="signupForm.get('phone')?.hasError('required')">El teléfono es requerido</mat-error>
+        <mat-error *ngIf="signupForm.get('phone')?.hasError('pattern')">Ingrese un número de teléfono válido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Digite su email" [(ngModel)]="user.email" name="email" required type="email">
+        <input matInput placeholder="Digite su email" formControlName="email" required type="email">
+        <mat-error *ngIf="signupForm.get('email')?.hasError('required')">El email es requerido</mat-error>
+        <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Ingrese un email válido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Contraseña</mat-label>
-        <input matInput placeholder="Digite su contraseña" [(ngModel)]="user.password" name="password" required
-          type="password">
+        <input matInput placeholder="Digite su contraseña" formControlName="password" required type="password">
+        <mat-error *ngIf="signupForm.get('password')?.hasError('required')">La contraseña es requerida</mat-error>
+        <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 6
+          caracteres</mat-error>
       </mat-form-field>
 
       <div class="text-center">
-        <button mat-raised-button color="primary" type="submit" class="submit-button">Registrarse</button>
+        <button mat-raised-button color="accent" type="submit" class="submit-button"
+          [disabled]="!signupForm.valid">Registrarse</button>
       </div>
     </form>
   </div>
