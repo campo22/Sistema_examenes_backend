@@ -2,11 +2,11 @@
   <div class="container">
     <div class="text-center">
       <img src="assets/perfil.png" class="id" alt="Perfil" />
-      <h2>Bienvenido a mi perfil</h2>
+      <h2>Registrate</h2>
     </div>
 
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width" color="accent">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre De Usuario</mat-label>
         <input matInput placeholder="Digite su nombre de usuario"
           formControlName="username" required />
@@ -16,7 +16,7 @@
           debe tener al menos 3 caracteres</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width" color="accent">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
         <input matInput placeholder="Digite su nombre" formControlName="name"
           required />

@@ -1,9 +1,9 @@
 /* src/app/page/signup/signup.component.css */
 
 .bootstrap-wrapper {
-  background-image: url('/assets/img3.jpg');
+  background-image: url('/assets/img4.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: 40% 30%; /* Ajusta la posición de la imagen */
   background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
@@ -12,11 +12,13 @@
   padding: 20px;
 }
 
+
+
 .container {
-  background-color: rgba(251, 249, 249, 0.855);
+  background-color: rgba(251, 249, 249, 0.563);
   border-radius: 8px;
   padding: 30px;
-  box-shadow: 0 4px 6px rgba(240, 250, 239, 0.1);
+  box-shadow: 0 4px 6px rgba(13, 222, 237, 0.919);
   width: 100%;
   max-width: 400px;
 }
@@ -33,7 +35,7 @@
 
 h2 {
   margin-bottom: 24px;
-  color: #12f30b;
+  color: #000000;
 }
 
 .form-container {

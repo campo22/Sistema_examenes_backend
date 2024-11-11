@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../Services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -48,16 +49,19 @@ export class SignupComponent implements OnInit {
           (data) => {
             console.log(data);
             console.log("Datos enviados de manera correcta");
-            this.showSuccessMessage();
+            Swal.fire('¡Bien hecho!', 'Se ha enviado tu información de manera correcta', 'success');
+            // this.showSuccessMessage();
             this.resetForm();
           },
           (error) => {
             console.log("Error al enviar los datos" + error);
-            this.showErrorMessage();
+            Swal.fire('¡Error!', 'Ha ocurrido un error al enviar tu información', 'error');
+            // this.showErrorMessage();
           }
         );
       } else {
-        this.showErrorMessage('Por favor, complete todos los campos');
+        Swal.fire('Por favor, complete todos los campos', 'error');
+        // this.showErrorMessage('Por favor, complete todos los campos');
       }
     } else {
       this.signupForm.markAllAsTouched();

@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="text-center">
+      <img src="assets/login.png" class="id" alt="Perfil" />
+      <h2>Inicia Sesión</h2>
+    </div>
+
+    <form [formGroup]="loginFor" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width" color="accent">
+        <mat-label>Nombre De Usuario</mat-label>
+        <input matInput placeholder="Digite su nombre de usuario"
+          formControlName="username" required />
+        <mat-error *ngIf="username?.errors?.['required']">El nombre de usuario
+          es requerido</mat-error>
+        <mat-error *ngIf="username?.errors?.['minlength']">El nombre de usuario
+          debe tener al menos 3 caracteres</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput placeholder="Digite su contraseña"
+          formControlName="password" required type="password" />
+        <mat-error *ngIf="password?.errors?.['required']">La contraseña es
+          requerida</mat-error>
+        <mat-error *ngIf="password?.errors?.['minlength']">La contraseña debe
+          tener al menos 6 caracteres</mat-error>
+      </mat-form-field>
+
+      <div class="text-center">
+        <button mat-raised-button color="accent" type="submit"
+          class="submit-button" [disabled]="!loginFor.valid">
+          Registrarse
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
