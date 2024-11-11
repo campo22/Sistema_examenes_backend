@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../Services/user.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -26,6 +27,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   private _apiUserService = inject(UserService);
   private _snackBar = inject(MatSnackBar);
+  private _router = inject(Router);
 
   constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group({
@@ -43,30 +45,54 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     if (this.signupForm.valid) {
       const formData = this.signupForm.value;
-      // Verificar que ningún campo esté vacío
       if (Object.values(formData).every(x => x !== null && x !== '')) {
         this._apiUserService.posUser(formData).subscribe(
           (data) => {
             console.log(data);
             console.log("Datos enviados de manera correcta");
-            Swal.fire('¡Bien hecho!', 'Se ha enviado tu información de manera correcta', 'success');
-            // this.showSuccessMessage();
+            this.showSuccessAlert();
             this.resetForm();
           },
           (error) => {
             console.log("Error al enviar los datos" + error);
-            Swal.fire('¡Error!', 'Ha ocurrido un error al enviar tu información', 'error');
-            // this.showErrorMessage();
+            this.showErrorAlert('Ha ocurrido un error al enviar tu información');
           }
         );
       } else {
-        Swal.fire('Por favor, complete todos los campos', 'error');
-        // this.showErrorMessage('Por favor, complete todos los campos');
+        this.showErrorAlert('Por favor, complete todos los campos');
       }
     } else {
       this.signupForm.markAllAsTouched();
       this.showErrorMessage('Por favor, corrija los errores en el formulario');
     }
+  }
+
+  showSuccessAlert() {
+    Swal.fire({
+      title: '¡Registro Exitoso!',
+      html: `
+        <p>Bienvenido a nuestra plataforma de exámenes en línea, donde <strong>facilitamos la gestión y realización de evaluaciones</strong> para
+        estudiantes y profesores.</p>
+        <p>Con nuestra herramienta, los profesores pueden <strong>crear y administrar exámenes fácilmente</strong>, mientras que los estudiantes
+        pueden acceder a sus evaluaciones de manera digital, asegurando que siempre estén disponibles y organizadas.</p>
+        <p>Di adiós a los exámenes en papel y a las calificaciones manuales: ahora, tus evaluaciones estarán al alcance de un clic,
+        simplificando el proceso de aprendizaje y mejorando tu experiencia educativa.</p>
+      `,
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ir al Login',
+      cancelButtonText: 'Cerrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._router.navigate(['/login']);
+      }
+    });
+  }
+
+  showErrorAlert(message: string) {
+    Swal.fire('¡Error!', message, 'error');
   }
 
   showSuccessMessage() {

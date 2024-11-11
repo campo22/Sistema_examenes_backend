@@ -1,76 +1,75 @@
 <div class="bootstrap-wrapper">
   <div class="container">
     <div class="text-center">
-      <img src="assets/perfil.png" class="id" alt="Perfil" />
-      <h2>Registrate</h2>
+      <img src="assets/perfil.png" class="id" alt="Perfil">
+      <h2>Registro de Usuario</h2>
     </div>
 
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Nombre De Usuario</mat-label>
+        <mat-label>Nombre de Usuario</mat-label>
         <input matInput placeholder="Digite su nombre de usuario"
-          formControlName="username" required />
-        <mat-error *ngIf="username?.errors?.['required']">El nombre de usuario
+          formControlName="username" required>
+        <mat-error *ngIf="username?.hasError('required')">El nombre de usuario
           es requerido</mat-error>
-        <mat-error *ngIf="username?.errors?.['minlength']">El nombre de usuario
+        <mat-error *ngIf="username?.hasError('minlength')">El nombre de usuario
           debe tener al menos 3 caracteres</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Nombre</mat-label>
         <input matInput placeholder="Digite su nombre" formControlName="name"
-          required />
-        <mat-error *ngIf="name?.errors?.['required']">El nombre es
+          required>
+        <mat-error *ngIf="name?.hasError('required')">El nombre es
           requerido</mat-error>
-        <mat-error *ngIf="name?.errors?.['minlength']">El nombre debe tener al
+        <mat-error *ngIf="name?.hasError('minlength')">El nombre debe tener al
           menos 2 caracteres</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Apellidos</mat-label>
         <input matInput placeholder="Digite sus apellidos"
-          formControlName="lastname" required />
-        <mat-error *ngIf="lastname?.errors?.['required']">Los apellidos son
+          formControlName="lastname" required>
+        <mat-error *ngIf="lastname?.hasError('required')">Los apellidos son
           requeridos</mat-error>
-        <mat-error *ngIf="lastname?.errors?.['minlength']">Los apellidos deben
+        <mat-error *ngIf="lastname?.hasError('minlength')">Los apellidos deben
           tener al menos 2 caracteres</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Teléfono</mat-label>
         <input matInput placeholder="Digite su teléfono" formControlName="phone"
-          required />
-        <mat-error *ngIf="phone?.errors?.['required']">El teléfono es
+          required>
+        <mat-error *ngIf="phone?.hasError('required')">El teléfono es
           requerido</mat-error>
-        <mat-error *ngIf="phone?.errors?.['pattern']">Ingrese un número de
-          teléfono válido de 10 dígitos</mat-error>
+        <mat-error *ngIf="phone?.hasError('pattern')">Ingrese un número de
+          teléfono válido (10 dígitos)</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Digite su email" formControlName="email"
-          required type="email" />
-        <mat-error *ngIf="email?.errors?.['required']">El email es
+          required type="email">
+        <mat-error *ngIf="email?.hasError('required')">El email es
           requerido</mat-error>
-        <mat-error *ngIf="email?.errors?.['email']">Ingrese un email
+        <mat-error *ngIf="email?.hasError('email')">Ingrese un email
           válido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Contraseña</mat-label>
         <input matInput placeholder="Digite su contraseña"
-          formControlName="password" required type="password" />
-        <mat-error *ngIf="password?.errors?.['required']">La contraseña es
+          formControlName="password" required type="password">
+        <mat-error *ngIf="password?.hasError('required')">La contraseña es
           requerida</mat-error>
-        <mat-error *ngIf="password?.errors?.['minlength']">La contraseña debe
+        <mat-error *ngIf="password?.hasError('minlength')">La contraseña debe
           tener al menos 6 caracteres</mat-error>
       </mat-form-field>
 
       <div class="text-center">
         <button mat-raised-button color="accent" type="submit"
-          class="submit-button" [disabled]="!signupForm.valid">
-          Registrarse
-        </button>
+          class="submit-button"
+          [disabled]="!signupForm.valid">Registrarse</button>
       </div>
     </form>
   </div>

@@ -30,6 +30,7 @@
               "./node_modules/bootstrap-grid-only-css/dist/css/bootstrap-grid.min.css"
             ],
             "scripts": [
+              "node_modules/sweetalert2/dist/sweetalert2.all.js"
 
             ],
             "server": "src/main.server.ts",
